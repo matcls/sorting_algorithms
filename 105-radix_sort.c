@@ -58,10 +58,11 @@ void radix_sort(int *array, size_t size)
 
 	if (!array || size < 2)
 		return;
-
 	sort_aux = malloc(sizeof(unsigned int) * size);
 	src_srt = malloc(sizeof(unsigned int) * size);
 	src_srt_2 = malloc(sizeof(unsigned int) * size);
+	if (!sort_aux || !src_srt || !src_srt_2)
+		return;
 	for (n = 0; n < size; n++)
 	{
 		sort_aux[n] = 0;
@@ -78,8 +79,7 @@ void radix_sort(int *array, size_t size)
 			{
 				if (n == src_srt[i])
 				{
-					sort_aux[j] = array[i];
-					j++;
+					sort_aux[j] = array[i], j++;
 				}
 			}
 		}
