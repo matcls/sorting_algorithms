@@ -1,14 +1,12 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "sort.h"
 /**
- * number_of_sorts - Swap two nodes in a double linked list.
+ * counting_sort - Swap two nodes in a double linked list.
  * @array: node to swap with.
  * @size: the double linked list.
  * Return: counter
  */
 
-unsigned int number_of_sorts(int *array, size_t size)
+unsigned int counting_sort(int *array, size_t size)
 {
 	unsigned int max = 0, n = 0;
 	unsigned int count = 0;
@@ -48,15 +46,18 @@ void source_of_sorts(unsigned int *out, size_t size, unsigned int *in,
 	}
 }
 /**
- * radix_sort - Swap two nodes in a double linked list.
- * @array: node to swap with.
- * @size: the double linked list.
+ * radix_sort - Sort an array of integers using
+ *              the radix sort algorithm.
+ * @array: The array to be sorted.
+ * @size: The size of the array.
  */
-
 void radix_sort(int *array, size_t size)
 {
 	unsigned int n = 0, *sort_aux, *src_srt, *src_srt_2;
 	unsigned int i = 0, j = 0, n_sort = 0, k = 0;
+
+	if (array == NULL || size < 2)
+		return;
 
 	sort_aux = malloc(sizeof(unsigned int) * size);
 	src_srt = malloc(sizeof(unsigned int) * size);
@@ -66,7 +67,7 @@ void radix_sort(int *array, size_t size)
 		sort_aux[n] = 0;
 		src_srt_2[n] = array[n];
 	}
-	n_sort = number_of_sorts(array, size);
+	n_sort = counting_sort(array, size);
 	for (k = 0; k <= n_sort; k++)
 	{
 		source_of_sorts(src_srt, size, src_srt_2, k);
